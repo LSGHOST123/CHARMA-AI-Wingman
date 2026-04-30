@@ -97,81 +97,81 @@ interface Phase {
 const PHASES: Phase[] = [
   {
     id: 1,
-    title: 'Fase 1 — Abertura (Direct)',
+    title: 'Fase 1 — Visão (0-30s)',
     time: '0-30s',
-    description: 'Sem enrolar. Detecção imediata. Confiança = Calma.',
+    description: 'Abertura rápida no corredor ou social. Zero pressão. Confiança = Calma.',
     examples: [
-      '“Oi… te vi ali e tive que vir falar com você”',
-      '“Qual seu nome?”'
+      '“tu moscou ali na escada, tive que brotar”',
+      '“cheguei agora, qual a visão?”'
     ],
     tips: [
-      'Direto = Confiança total',
-      'Curto = Não perde o timing',
-      'Olhe nos olhos, sem pressa'
+      'Postura de marra, mas relaxado',
+      'Olhar fixo e sorriso de lado',
+      'Seja o centro das atenções sem esforço'
     ],
     icon: <UserPlus className="w-5 h-5 text-blue-400" />
   },
   {
     id: 2,
-    title: 'Fase 2 — Atração (Teasing)',
+    title: 'Fase 2 — Teasing (O Caos)',
     time: '30s-2min',
-    description: 'Cria picos de emoção. Desafie a postura dela.',
+    description: 'Cria picos de emoção. Desafie se ela é "relíquia" ou "fake/santinha".',
     examples: [
-      '“Você tem cara de que dá trabalho”',
-      '“Tô tentando entender se você é tranquila ou se é o caos”'
+      '“tu tem cara de ser o puro caos desse hotel”',
+      '“tô só vendo tu fingindo que é santinha”'
     ],
     tips: [
-      'Deixe ela se explicar (Manejo de resistência)',
-      'Se falar que tá com amigas: "Relaxa, se você for chata eu volto logo" 😏',
-      'Cria um "frame" de desafio'
+      'Provocação = Atração rápida',
+      'Não elogie, desafie a postura dela',
+      'Se ela rir ou rebater, tu ganhou o jogo'
     ],
     icon: <Flame className="w-5 h-5 text-orange-500" />
   },
   {
     id: 3,
-    title: 'Fase 3 — Conexão (Social)',
+    title: 'Fase 3 — Social (Desenrolo)',
     time: '2-5min',
-    description: 'Nada de entrevista. Conexão emocional através de brincadeiras.',
+    description: 'Papo reto sem parecer entrevista de emprego. Conexão adolescente.',
     examples: [
-      '“O que você tá aprontando aqui hoje?”',
-      '“Hmm… isso explica muita coisa 😏”'
+      '“tá aprontando o que por esse corredor?”',
+      '“se pá tu é mais gente boa que parece 😏”'
     ],
     tips: [
-      'Use o silêncio a seu favor',
-      'A incerteza aumenta a atração',
+      'Fale gírias com confiança',
+      'Incerteza aumenta a atração',
       'Linguagem corporal aberta e relaxada'
     ],
     icon: <Sparkles className="w-5 h-5 text-purple-400" />
   },
   {
     id: 4,
-    title: 'Fase 4 — Primeiro Toque',
+    title: 'Fase 4 — Toque (Test Drive)',
     time: '3-6min',
-    description: 'Testar receptividade. O toque libera oxitocina.',
+    description: 'Encostar de leve no braço ou ombro. O toque libera oxitocina.',
     examples: [
       'Toque leve no braço enquanto ri',
-      '“Sabia...” (encostando de leve)'
+      '“sabia...” (encostando de leve)'
     ],
     tips: [
       'Se aceita -> continua. Se recua -> desacelera.',
       'Sincronize o toque com picos de risada',
-      'Mantenha a naturalidade sempre'
+      'Deve parecer natural, sem pressão'
     ],
     icon: <Zap className="w-5 h-5 text-yellow-400" />
   },
   {
     id: 5,
-    title: 'Fase 5 — Proximidade',
+    title: 'Fase 5 — Bolha (1v1)',
     time: '5-10min',
-    description: 'Falar baixo, diminuir distância. O clima começa aqui.',
+    description: 'Sair de perto dos outros. Falar baixo e diminuir distância.',
     examples: [
-      '“Vem um pouco mais pra cá, tá barulhento”',
-      'Falar perto do ouvido (sutil)'
+      '“bora ali na escada, aqui tá mó barulhento”',
+      '“papo tá bom, mas vamo ali no canto”'
     ],
     tips: [
-      'Se ela vem -> sinal verde forte',
+      'Se ela vem -> sinal verde firme',
       'Puxe levemente pela mão',
-      'Crie um bolha privada entre vocês'
+      'Crie uma bolha privada entre vocês'
     ],
     icon: <Thermometer className="w-5 h-5 text-red-400" />
   },
@@ -179,9 +179,9 @@ const PHASES: Phase[] = [
     id: 6,
     title: 'Fase 6 — Escalada Física',
     time: '10-15min',
-    description: 'Mão na lombar, ombro a ombro. Toque constante.',
+    description: 'Mão na lombar, ombro a ombro. Toque constante e natural.',
     examples: [
-      '“Melhorou agora” (ao aproximar)',
+      '“melhorou agora” (ao aproximar)',
       'Aproximar o rosto gradualmente'
     ],
     tips: [
@@ -195,25 +195,25 @@ const PHASES: Phase[] = [
     id: 7,
     title: 'Fase 7 — O Beijo (Momentum)',
     time: '15min+',
-    description: 'Não é tempo, é sinal. Pausa dramática e ataque.',
+    description: 'Pausa dramática e finalização. A marra desaparece aqui.',
     examples: [
-      '“Vem cá...” (baixo, aproximando devagar)',
-      'Olhar fixo nos lábios e voltar pro olho'
+      '“tu fala demais...” (olhando pra boca)',
+      '“vem cá...” (aproximando devagar)'
     ],
     tips: [
-      'Pausas longas geram desejo',
-      'Sinal: ela mantém contato visual e não recua',
-      'Aproximação lenta = 100% de sucesso'
+      'Pausas longas geram desejo forte',
+      'Sinal: ela mantém contato e não recua',
+      'Aproximação lenta = sucesso garantido'
     ],
     icon: <Heart className="w-5 h-5 text-red-600" />
   }
 ];
 
 const EXIT_LINES = [
-  { title: "Saída Elegante", content: "“Olha, senti que a vibe não bateu tanto. Vou deixar você curtir com suas amigas, boa sorte!”" },
-  { title: "Indireta de Valor", content: "“Acho que estamos em frequências muito diferentes agora. Prazer te conhecer, aproveite a noite.”" },
-  { title: "O Cupido Ocupado", content: "“Vou ali encontrar uns amigos que acabaram de chegar. Foi legal o papo, tchau!”" },
-  { title: "Anti-Drama", content: "“Notei que você não está no clima hoje. Não quero gastar seu tempo nem o meu, boa diversão.”" }
+  { title: "Saída na Marra", content: "“visão, senti que a vibe não bateu. vou ali com meus mano, fé!”" },
+  { title: "Indireta de Valor", content: "“papo reto, a gente tá em outra sintonia. aproveita aí, fui!”" },
+  { title: "O Cupido Ocupado", content: "“meus parceiro chegaram ali agora, vou lá dar uma atenção. tchau!”" },
+  { title: "Anti-Drama", content: "“se ligou que tu não tá no clima hoje? não quero perder meu tempo nem o teu, curte aí.”" }
 ];
 
 const SIGNALS = [
@@ -279,11 +279,11 @@ export default function CharmaApp() {
     setMentorAnswer('');
     
     try {
-      const systemP = `Você é o "Charma AI", o mestre do Short Game em HOTEL/RESORT.
-O usuário quer beijar/ficar agora. Responda em PT-BR Adolescente/Mandrake (letras minúsculas, gírias).
-Seja direto, prático e provocador. Fale como um irmão mais velho desenrolado.
-Use a lógica: 0-2min (provocação), 2-5min (conexão), 5-15min (proximidade e beijo).
-NUNCA use "estás" ou linguagem de Portugal.`;
+      const systemP = `Você é o "Charma AI", o mestre do Short Game em HOTEL/RESORT para adolescentes (14-17 anos).
+O usuário quer beijar/ficar agora. Responda em PT-BR Mandrake Adolescente (letras minúsculas, gírias: marcha, moscou, relíquia, papo reto, visão).
+Seja prático e marrento, mas sem ser babaca. Fale como um irmão mais velho desenrolado.
+Foco em beijo rápido no corredor/social/escada/piscina. NADA de papo de adulto ou namoro.
+NUNCA use "estás" ou formalidades.`;
       
       const output = await generateAIContent(systemP, mentorQuestion, false);
       setMentorAnswer(output.trim());
@@ -320,28 +320,23 @@ NUNCA use "estás" ou linguagem de Portugal.`;
     try {
       const conversationHistory = validPairs.map(p => `Eu: ${p.me}\nEla: ${p.her}`).join('\n');
 
-      const systemPrompt = `Você é um Mentor Mandrake Adolescente (Ghostwriter) focado em beijo/vapo em 15min.
-Contexto Atual: HOTEL / RESORT / SOCIAL PRIVADA.
-Sua missão: Dar 5 (CINCO) opções de mensagens curtas pro usuário (H) enviar pra mulher (M).
+      const systemPrompt = `Você é um Wingman Mandrake Adolescente (14-17 anos) focado em beijo/ficar no HOTEL / RESORT / SOCIAL.
+Sua missão: Dar 5 (CINCO) opções de mensagens curtas pro usuário (H) enviar pra gata (M).
 
-REGRAS DE OURO (ESTILO):
-- LINGUAGEM: PT-BR Mandrake Adolescente. PROIBIDO "estás" ou formalidade. Use "tu" ou "você" sem conjugação formal (-s no final).
-- SLANG: moscou, brota, tal, caos, vibe, marcha, vapo, tendeu, loucura, zero condicao, vish, esquece.
-- LETRAS: Sempre minúsculas. Sem pontos finais.
-- CADÊNCIA: Seja sensível ao contexto (HISTORY):
-  - Se a conversa acabou de começar (1-2 msgs): Use "Teasing" (Provocação) e "Emotional Spike". Não seja direto demais ainda.
-  - Se a conversa já fluiu: Escale pro toque ou convite (Escalada/Direta).
+REGRAS DE OURO (ESTILO MANDRAKE):
+- LINGUAGEM: PT-BR Mandrake Adolescente. PROIBIDO "estás" ou formalidade. Use "tu" ou "você" sem conjugação formal.
+- SLANG: moscou, brota, tal, caos, vibe, marcha, mermo, tendeu, loucura, zero condição, vish, esquece, relíquia, visão, se pá.
+- LETRAS: Sempre minúsculas. Sem pontos finais. Curto e grosso.
+- CADÊNCIA (CONTEXTO):
+  - Início (1-2 msgs): Teasing (Provocação) e Emotional Spike. Desafie se ela é "lerda" ou "marrenta".
+  - Meio: Flirt e Escalação. Chamar pra um canto (escada, corredor, social do quarto). NADA de sexo explícito/adulto. Foco em beijo.
 
-TÉCNICAS OBRIGATÓRIAS:
-- Teasing: Desafiar se ela é "tranquila ou caos" ou se "dá trabalho".
-- Emotional Spike: Deixar ela na dúvida do que você quis dizer.
-
-ESTRUTURA DAS 5 OPÇÕES OBRIGATÓRIAS:
-1. Provocação (Desafiando a postura dela ali no hotel/corredor) Desenvolva conforme o histórico.
-2. Direta (Chamar pra perto ou pro quarto agora, se o clima permitir)
-3. Mandrake (Gíria pura, vibe rápida)
-4. Desapego (Provocar o sumiço dela ou avisar que a fila anda)
-5. Clima / Geral (Teasing sobre o caos do lugar ou o que ela tá aprontando)
+OPÇÕES OBRIGATÓRIAS (5 OBJETOS NO JSON):
+1. Provocação (Desafiando a postura dela ali no hotel/corredor/social)
+2. Direta (Chamar pra perto ou pra um canto reservado agora)
+3. Mandrake (Gíria pura, vibe rápida de desenrolado)
+4. Desapego (Avisando que a fila anda ou provocando o sumiço dela)
+5. Teasing/Pico (Dizer que ela tem cara de ser o puro caos/dar trabalho)
 
 Retorne APENAS o JSON array: [{"type": "...", "content": "..."}]`;
 
