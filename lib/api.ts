@@ -5,10 +5,10 @@ const ALPHA_PROXY_URL = 'https://script.google.com/macros/s/AKfycbzmkNoWvTNRLhW-
  * fetchWithProxy: Helper universal para bypass de CORS.
  * Resolve automaticamente problemas de query string e respostas mistas (JSON/Text).
  */
-export const fetchWithProxy = async <T>(endpoint: string, options?: RequestInit): Promise<T> => {
+export const fetchWithProxy = async <T>(endpoint: string, options?: RequestInit, customBaseUrl?: string): Promise<T> => {
   // 1. Constrói a URL alvo garantindo a estrutura correta de separadores (? e &)
   const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
-  let fullTargetUrl = TARGET_BASE_URL + cleanEndpoint;
+  let fullTargetUrl = (customBaseUrl || TARGET_BASE_URL) + cleanEndpoint;
 
   // Corrige duplicidade de '?' se o endpoint já vier com parâmetros mal formatados
   if ((fullTargetUrl.match(/\?/g) || []).length > 1) {
@@ -20,8 +20,11 @@ export const fetchWithProxy = async <T>(endpoint: string, options?: RequestInit)
   // Nota: No ambiente AI Studio, usamos o Alpha Proxy para garantir tráfego estável
   const url = `${ALPHA_PROXY_URL}?url=${encodeURIComponent(fullTargetUrl)}`;
 
+  console.log(`[Proxy Call] ${url}`);
+
   const fetchOptions: RequestInit = {
     ...options,
+    cache: 'no-store',
     headers: {
       'Accept': 'application/json',
       ...options?.headers,
@@ -36,7 +39,23 @@ export const fetchWithProxy = async <T>(endpoint: string, options?: RequestInit)
   }
 
   try {
+    // Tenta chamada direta primeiro se o domínio for conhecido por suportar CORS (como pollinations.ai)
+    if (fullTargetUrl.includes('pollinations.ai')) {
+      try {
+        const directRes = await fetch(fullTargetUrl, fetchOptions);
+        if (directRes.ok) {
+          const text = await directRes.text();
+          try { return JSON.parse(text); } catch { return text as any; }
+        }
+      } catch (e) {
+        console.warn("Direct fetch failed, falling back to proxy...", e);
+      }
+    }
+
     const response = await fetch(url, fetchOptions);
+    if (!response.ok) {
+       console.error(`Proxy returned status ${response.status}`);
+    }
     const textData = await response.text();
     
     try {

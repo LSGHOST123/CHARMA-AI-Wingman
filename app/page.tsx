@@ -24,48 +24,58 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { fetchWithProxy } from '@/lib/api';
-import { GoogleGenAI } from '@google/genai';
 
 // --- Constants & Types ---
 
-async function generateAIContent(systemPrompt: string, userPrompt: string, expectsJSON = false) {
-  const geminiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-  
-  if (geminiKey) {
-    try {
-      const ai = new GoogleGenAI({ apiKey: geminiKey });
-      const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
-        contents: userPrompt,
-        config: {
-          systemInstruction: systemPrompt,
-          responseMimeType: expectsJSON ? 'application/json' : 'text/plain',
-        }
-      });
-      return response.text || '';
-    } catch (e) {
-      console.error('Gemini failed, will fallback to Pollinations', e);
-    }
-  }
-  
-  const res = await fetch('https://text.pollinations.ai/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
+async function generateAIContent(systemPrompt: string, userPrompt: string, _expectsJSON = false) {
+  try {
+    // POST is much better for long conversation history to avoid URL length issues
+    const payload = {
+      model: 'openai',
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt }
       ],
-      model: 'openai',
-      jsonMode: expectsJSON
-    })
-  });
+      temperature: 0.7,
+      seed: Math.floor(Math.random() * 1000000)
+    };
 
-  if (!res.ok) {
-    throw new Error(`AI Error: ${res.status}`);
+    const res = await fetchWithProxy<any>('/openai', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }, 'https://text.pollinations.ai');
+
+    // Robust handling of return types from the proxy
+    if (!res) return '';
+    
+    if (typeof res === 'string') {
+      return res.trim();
+    }
+    
+    // Look for content in common response structures
+    if (res.choices?.[0]?.message?.content) {
+      return res.choices[0].message.content;
+    }
+    
+    if (res.content) {
+      return res.content;
+    }
+
+    // If it's an object but none of the above, stringify it instead of using String()
+    if (typeof res === 'object') {
+      // Check if it looks like an error
+      if (res.error) {
+        throw new Error(typeof res.error === 'string' ? res.error : JSON.stringify(res.error));
+      }
+      return JSON.stringify(res);
+    }
+
+    return String(res);
+  } catch (err) {
+    console.error("AI Generation local error:", err);
+    throw err;
   }
-
-  return await res.text();
 }
 
 enum Tab {
@@ -87,114 +97,113 @@ interface Phase {
 const PHASES: Phase[] = [
   {
     id: 1,
-    title: 'Abertura (Direct)',
+    title: 'Fase 1 — Abertura (Direct)',
     time: '0-30s',
-    description: 'Sem enrolação. Demonstra confiança imediata e não perde o timing.',
+    description: 'Sem enrolar. Detecção imediata. Confiança = Calma.',
     examples: [
       '“Oi… te vi ali e tive que vir falar com você”',
       '“Qual seu nome?”'
     ],
     tips: [
-      'Mantenha contato visual',
-      'Sorriso leve e relaxado',
-      'Voz clara e firme'
+      'Direto = Confiança total',
+      'Curto = Não perde o timing',
+      'Olhe nos olhos, sem pressa'
     ],
     icon: <UserPlus className="w-5 h-5 text-blue-400" />
   },
   {
     id: 2,
-    title: 'Atração (Teasing)',
-    time: '30s-2m',
-    description: 'Cria tensão emocional rápida através de provocações lúdicas.',
+    title: 'Fase 2 — Atração (Teasing)',
+    time: '30s-2min',
+    description: 'Cria picos de emoção. Desafie a postura dela.',
     examples: [
       '“Você tem cara de que dá trabalho”',
-      '“Tô tentando entender se você é tranquila ou o puro caos”'
+      '“Tô tentando entender se você é tranquila ou se é o caos”'
     ],
     tips: [
-      'Use tom de brincadeira',
-      'Observe a reação (ela deve rir ou rebater)',
-      'Não seja ofensivo, seja desafiador'
+      'Deixe ela se explicar (Manejo de resistência)',
+      'Se falar que tá com amigas: "Relaxa, se você for chata eu volto logo" 😏',
+      'Cria um "frame" de desafio'
     ],
     icon: <Flame className="w-5 h-5 text-orange-500" />
   },
   {
     id: 3,
-    title: 'Conexão (Banter)',
+    title: 'Fase 3 — Conexão (Social)',
     time: '2-5min',
-    description: 'Nada de entrevista. Perguntas leves que fazem ela se interessar em falar de si mesma.',
+    description: 'Nada de entrevista. Conexão emocional através de brincadeiras.',
     examples: [
-      '“O que você está aprontando aqui hoje?”',
+      '“O que você tá aprontando aqui hoje?”',
       '“Hmm… isso explica muita coisa 😏”'
     ],
     tips: [
-      'Fale menos, ouça mais',
-      'Faça ela se qualificar para você',
-      'Mantenha a conversa divertida'
+      'Use o silêncio a seu favor',
+      'A incerteza aumenta a atração',
+      'Linguagem corporal aberta e relaxada'
     ],
     icon: <Sparkles className="w-5 h-5 text-purple-400" />
   },
   {
     id: 4,
-    title: 'O Primeiro Toque',
+    title: 'Fase 4 — Primeiro Toque',
     time: '3-6min',
-    description: 'Testa a receptividade física. Libera oxitocina e cria conexão real.',
+    description: 'Testar receptividade. O toque libera oxitocina.',
     examples: [
       'Toque leve no braço enquanto ri',
-      '“Sabia...” (acompanhado de um toque breve)'
+      '“Sabia...” (encostando de leve)'
     ],
     tips: [
-      'Se ela recuar, desacelere',
-      'Se ela aceitar, continue a progressão',
-      'Deve parecer natural, não forçado'
+      'Se aceita -> continua. Se recua -> desacelera.',
+      'Sincronize o toque com picos de risada',
+      'Mantenha a naturalidade sempre'
     ],
     icon: <Zap className="w-5 h-5 text-yellow-400" />
   },
   {
     id: 5,
-    title: 'Proximidade & Clima',
+    title: 'Fase 5 — Proximidade',
     time: '5-10min',
-    description: 'Diminui a distância. Fala mais baixo para criar intimidade.',
+    description: 'Falar baixo, diminuir distância. O clima começa aqui.',
     examples: [
       '“Vem um pouco mais pra cá, tá barulhento”',
-      'Falar perto do ouvido (sutilmente)'
+      'Falar perto do ouvido (sutil)'
     ],
     tips: [
-      'Convites para mudar de lugar são sinais verdes',
-      'Mantenha contato visual intenso',
-      'Calibre a energia do ambiente'
+      'Se ela vem -> sinal verde forte',
+      'Puxe levemente pela mão',
+      'Crie um bolha privada entre vocês'
     ],
     icon: <Thermometer className="w-5 h-5 text-red-400" />
   },
   {
     id: 6,
-    title: 'A Escalada',
+    title: 'Fase 6 — Escalada Física',
     time: '10-15min',
-    description: 'Aproximação física definitiva. Toque constante e natural.',
+    description: 'Mão na lombar, ombro a ombro. Toque constante.',
     examples: [
-      'Ficar ombro a ombro',
-      'Braço leve ou mão na lombar',
-      '“Agora ficou melhor”'
+      '“Melhorou agora” (ao aproximar)',
+      'Aproximar o rosto gradualmente'
     ],
     tips: [
-      'Lidere o movimento',
-      'Confie na sua intuição sobre o momento',
-      'Sincronize com a respiração dela'
+      'Olhe olho-olho-boca (triângulo)',
+      'Não fale mais nada, deixe o silêncio agir',
+      'Ritmo lento demonstra domínio'
     ],
     icon: <ArrowRight className="w-5 h-5 text-pink-400" />
   },
   {
     id: 7,
-    title: 'O Beijo',
-    time: 'Momentum',
-    description: 'Não é tempo, é sinal. O clímax da tensão criada.',
+    title: 'Fase 7 — O Beijo (Momentum)',
+    time: '15min+',
+    description: 'Não é tempo, é sinal. Pausa dramática e ataque.',
     examples: [
-      'Triângulo do olhar (olho-olho-boca)',
-      '“Vem cá...” (baixo e aproximando devagar)'
+      '“Vem cá...” (baixo, aproximando devagar)',
+      'Olhar fixo nos lábios e voltar pro olho'
     ],
     tips: [
-      'Pausa dramática antes de agir',
-      'Abaixe o volume da voz',
-      'Leia o sinal: ela mantém o contato visual?'
+      'Pausas longas geram desejo',
+      'Sinal: ela mantém contato visual e não recua',
+      'Aproximação lenta = 100% de sucesso'
     ],
     icon: <Heart className="w-5 h-5 text-red-600" />
   }
@@ -220,14 +229,6 @@ const SIGNALS = [
   { id: 'fake_laugh', label: 'Risada forçada/educada', weight: 0.5, type: 'red' },
 ];
 
-const INTENTS = [
-  { id: 'initiate', label: 'Iniciar conversa', prompt: 'Crie um abridor magnético baseado no contexto.' },
-  { id: 'reengage', label: 'Puxar assunto', prompt: 'Ela parou de responder ou está fria. Puxe um assunto novo e interessante.' },
-  { id: 'escalate', label: 'Escalar clima', prompt: 'Aumente a tensão sexual de forma lúdica e charmosa.' },
-  { id: 'close', label: 'Marcar encontro', prompt: 'Chame ela para sair ou ir para outro lugar de forma assertiva.' },
-  { id: 'neutral', label: 'Neutro/Equilibrado', prompt: 'Uma resposta natural, equilibrada e pé no chão para manter o fluxo sem pressão.' },
-];
-
 interface ChatPair {
   me: string;
   her: string;
@@ -238,7 +239,6 @@ interface ChatPair {
 export default function CharmaApp() {
   const [activeTab, setActiveTab] = useState<Tab>(Tab.Techniques);
   const [chatPairs, setChatPairs] = useState<ChatPair[]>([{ me: '', her: '' }]);
-  const [selectedIntent, setSelectedIntent] = useState<string>('initiate');
   const [responses, setResponses] = useState<{ type: string, content: string }[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
@@ -279,11 +279,11 @@ export default function CharmaApp() {
     setMentorAnswer('');
     
     try {
-      const systemP = `Act as "Charma AI", an expert men's dating and social dynamics mentor. The user is reading your practical guides and is asking you a question for advice (e.g. "I'm shy", "I didn't understand the pattern breaker"). 
-Be direct, practical, and highly encouraging, like an experienced older brother addressing him in Brazilian Portuguese.
-CRUCIAL:
-- Your response MUST be in Brazilian Portuguese.
-- Keep it short, strong, and highly applicable. No BS, no long paragraphs.`;
+      const systemP = `Você é o "Charma AI", o mestre do Short Game em HOTEL/RESORT.
+O usuário quer beijar/ficar agora. Responda em PT-BR Adolescente/Mandrake (letras minúsculas, gírias).
+Seja direto, prático e provocador. Fale como um irmão mais velho desenrolado.
+Use a lógica: 0-2min (provocação), 2-5min (conexão), 5-15min (proximidade e beijo).
+NUNCA use "estás" ou linguagem de Portugal.`;
       
       const output = await generateAIContent(systemP, mentorQuestion, false);
       setMentorAnswer(output.trim());
@@ -318,90 +318,110 @@ CRUCIAL:
     setResponses([]);
 
     try {
-      const intentObj = INTENTS.find(i => i.id === selectedIntent);
       const conversationHistory = validPairs.map(p => `Eu: ${p.me}\nEla: ${p.her}`).join('\n');
 
-      const systemPrompt = `Você é um mestre em psicologia social, sedução (flirting) e dinâmicas sociais (Charma AI). 
-O usuário está aplicando seus protocolos práticos e precisa de opções de respostas para o WhatsApp/Instagram.
+      const systemPrompt = `Você é um Mentor Mandrake Adolescente (Ghostwriter) focado em beijo/vapo em 15min.
+Contexto Atual: HOTEL / RESORT / SOCIAL PRIVADA.
+Sua missão: Dar 5 (CINCO) opções de mensagens curtas pro usuário (H) enviar pra mulher (M).
 
-REGRAS DE OURO PARA NÃO SER CRINGE (IMPORTANTE!):
-1. SEJA EXTREMAMENTE CASUAL. Escreva como um jovem brasileiro "low profile" (sem letras maiúsculas forçadas, pontuação simples e direta).
-2. FLERTAR NÃO É ELOGIAR. Use as técnicas de FLIRTING, TEASING, PUSH-PULL e QUEBRA DE PADRÃO.
-3. PROIBIDO: Elogios melosos, cantadinhas, falar difícil, intensidade excessiva, textões longos. Seja desapegado (Takeaway).
-4. CALIBRAÇÃO DE ENERGIA: Se a mulher respondeu curto ("oi"), devolva curto. Mantenha o mistério e a postura de prêmio ("Prize").
+REGRAS DE OURO (ESTILO):
+- LINGUAGEM: PT-BR Mandrake Adolescente. PROIBIDO "estás" ou formalidade. Use "tu" ou "você" sem conjugação formal (-s no final).
+- SLANG: moscou, brota, tal, caos, vibe, marcha, vapo, tendeu, loucura, zero condicao, vish, esquece.
+- LETRAS: Sempre minúsculas. Sem pontos finais.
+- CADÊNCIA: Seja sensível ao contexto (HISTORY):
+  - Se a conversa acabou de começar (1-2 msgs): Use "Teasing" (Provocação) e "Emotional Spike". Não seja direto demais ainda.
+  - Se a conversa já fluiu: Escale pro toque ou convite (Escalada/Direta).
 
-BASEIE AS RESPOSTAS NESTES 4 PILARES DO SEU PROTOCOLO:
-1. "Atrevida" (Teasing / Push-Pull): Provoque com humor, discorde de brincadeira ou dê um "gancho" que exija que ela se qualifique. Flerte com ousadia e leve deboche.
-2. "Direta" (Escalada / Liderança): Tome as rédeas da interação de forma prática, assertiva, e sem enrolação. Vá direto ao ponto.
-3. "Empática" (Cold Reading / Grounding): Faça uma leitura fria sutil sobre ela ou mostre que você nota detalhes. Sem ser carente.
-4. "Neutro/Equilibrado" (Desapego / Low Investment): Responda com naturalidade, como quem tem muitas opções (abundância).
+TÉCNICAS OBRIGATÓRIAS:
+- Teasing: Desafiar se ela é "tranquila ou caos" ou se "dá trabalho".
+- Emotional Spike: Deixar ela na dúvida do que você quis dizer.
 
-Você DEVE retornar APENAS um JSON array válido com as 4 opções, sem NENHUM texto extra. Use EXATAMENTE este formato:
-[
-  {"type": "Atrevida", "content": "opa duda, com esse oi seco chuto que você é paulista haha"},
-  {"type": "Direta", "content": "fala duda. tudo certo? iai o que manda hoje"},
-  {"type": "Empática", "content": "duda... cara de quem não gosta de acordar cedo. suave?"},
-  {"type": "Neutro/Equilibrado", "content": "opa duda, tudo bem?"}
-]`;
+ESTRUTURA DAS 5 OPÇÕES OBRIGATÓRIAS:
+1. Provocação (Desafiando a postura dela ali no hotel/corredor) Desenvolva conforme o histórico.
+2. Direta (Chamar pra perto ou pro quarto agora, se o clima permitir)
+3. Mandrake (Gíria pura, vibe rápida)
+4. Desapego (Provocar o sumiço dela ou avisar que a fila anda)
+5. Clima / Geral (Teasing sobre o caos do lugar ou o que ela tá aprontando)
 
-      const userPrompt = `INTENTION: ${intentObj?.label}\nHISTORY:\n${conversationHistory}`;
+Retorne APENAS o JSON array: [{"type": "...", "content": "..."}]`;
+
+      const userPrompt = `HISTORY:\n${conversationHistory}`;
 
       const output = await generateAIContent(systemPrompt, userPrompt, true);
       
-      let cleanJson = output.replace(/```json|```/g, '').trim();
+      if (!output) throw new Error("A IA retornou vazio.");
+
+      let cleanJson = output.trim();
       
-      // Fallback extraction se a IA enviar texto fora do JSON
-      const match = cleanJson.match(/\[[\s\S]*\]/);
-      if (match) {
-        cleanJson = match[0];
-      }
-      // Se não encontrou array direto, verifica se tem um objeto com um array dentro (ex: {"result": [...]})
-      else {
-        const objMatch = cleanJson.match(/\{[\s\S]*\}/);
-        if (objMatch) {
-            cleanJson = objMatch[0];
+      // Extraction robusta de JSON (Array primordialmente)
+      const arrayStart = cleanJson.indexOf('[');
+      const arrayEnd = cleanJson.lastIndexOf(']');
+      
+      if (arrayStart !== -1 && arrayEnd !== -1 && arrayEnd > arrayStart) {
+        cleanJson = cleanJson.substring(arrayStart, arrayEnd + 1);
+      } else {
+        // Tenta Objeto se não achou array
+        const objectStart = cleanJson.indexOf('{');
+        const objectEnd = cleanJson.lastIndexOf('}');
+        if (objectStart !== -1 && objectEnd !== -1 && objectEnd > objectStart) {
+          cleanJson = cleanJson.substring(objectStart, objectEnd + 1);
         }
       }
 
-      // Cleanup common JSON syntax errors generated by the LLM
-      cleanJson = cleanJson.replace(/",\s*"?\s*}/g, '"}'); // Fix trailing comma/quote after string in object
-      cleanJson = cleanJson.replace(/",\s*"?\s*]/g, '"]'); // Fix trailing comma/quote after string in array
-      cleanJson = cleanJson.replace(/},\s*]/g, '}]'); // Fix trailing comma after object in array
+      // Cleanup common JSON syntax issues
+      cleanJson = cleanJson.replace(/",\s*}/g, '"}').replace(/},\s*]/g, '}]');
       
       let parsed = [];
       try {
-        let rawObj = JSON.parse(cleanJson);
-        // Se retornou um array
-        if (Array.isArray(rawObj)) {
-            parsed = rawObj;
-        } 
-        // Se retornou um objeto
-        else if (typeof rawObj === 'object' && rawObj !== null) {
-            // Se tiver uma propriedade que é um array (ex: { result: [...] })
-            const possibleArray = Object.values(rawObj).find(val => Array.isArray(val));
-            if (possibleArray) {
-               parsed = possibleArray;
-            } 
-            // Se retornou as chaves como tipos (ex: {"Atrevida": "...", "Direta": "..."})
-            else if (Object.keys(rawObj).some(k => k === 'Atrevida' || k === 'Direta')) {
-                parsed = Object.entries(rawObj).map(([key, val]) => ({
-                    type: key,
-                    content: typeof val === 'string' ? val : JSON.stringify(val)
-                }));
-            }
-            else {
-               parsed = [rawObj];
-            }
+        const raw = JSON.parse(cleanJson);
+        if (Array.isArray(raw)) {
+          parsed = raw;
+        } else if (raw && typeof raw === 'object') {
+          // Tenta achar um array dentro (ex: { responses: [...] })
+          const possibleArray = Object.values(raw).find(v => Array.isArray(v));
+          if (possibleArray) {
+            parsed = possibleArray;
+          } else {
+            // Converte objeto de tipos para array
+            parsed = Object.entries(raw).map(([k, v]) => ({
+              type: k,
+              content: typeof v === 'string' ? v : JSON.stringify(v)
+            }));
+          }
         }
       } catch (err) {
-        console.error("Parse error na resposta AI:", err, output);
-        parsed = [{ type: 'Erro', content: 'Formato inválido recebido da IA' }];
+        console.warn("Parse error (attempting regex fallback):", err);
+        // Fallback: tenta extrair via regex se falhar o parse
+        const matches = cleanJson.match(/"content":\s*"([^"]+)"/g);
+        if (matches) {
+          parsed = matches.map((m: string, i: number) => ({
+            type: `Opção ${i+1}`,
+            content: m.split('"')[3] || 'Mensagem extraída'
+          }));
+        }
       }
-      
-      setResponses(parsed);
+
+      // Fallback final: Se ainda não tem nada, tenta quebrar por linhas
+      if (parsed.length === 0) {
+        const potentialLines = output.split('\n')
+          .map((l: string) => l.trim())
+          .filter((l: string) => l.length > 5 && !l.includes('{') && !l.includes('['));
+        
+        parsed = potentialLines.slice(0, 5).map((l: string, i: number) => ({
+          type: 'Sugestão',
+          content: l.replace(/^\d+[\.\)]\s*/, '').replace(/^["']|["']$/g, '').trim()
+        }));
+      }
+
+      // Garante que temos algo antes de atualizar
+      if (parsed.length > 0) {
+        setResponses(parsed.slice(0, 5));
+      } else {
+        throw new Error("Não consegui encontrar mensagens válidas na resposta.");
+      }
     } catch (error) {
       console.error('AI Error:', error);
-      setResponses([{ type: 'Erro', content: 'Não consegui processar a missão agora.' }]);
+      setResponses([{ type: 'Erro', content: 'Sem sinal. Tenta de novo em 1 min.' }]);
     } finally {
       setIsLoading(false);
     }
@@ -607,18 +627,6 @@ Você DEVE retornar APENAS um JSON array válido com as 4 opções, sem NENHUM t
               <div className="text-center space-y-2 mb-8">
                 <h2 className="text-3xl font-display font-bold tracking-tighter text-white">AI Wingman Assistant</h2>
                 <p className="text-gray-400 text-sm tracking-wide">Descreva o contexto ou cole a conversa inteira.</p>
-              </div>
-
-              <div className="flex flex-wrap gap-2 mb-4">
-                {INTENTS.map((intent) => (
-                  <button
-                    key={intent.id}
-                    onClick={() => setSelectedIntent(intent.id)}
-                    className={`px-3 py-1.5 rounded-xl text-[10px] font-bold uppercase tracking-wider border transition-all ${selectedIntent === intent.id ? 'bg-purple-600 border-purple-500 text-white' : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/20'}`}
-                  >
-                    {intent.label}
-                  </button>
-                ))}
               </div>
 
               <div className="space-y-6">
