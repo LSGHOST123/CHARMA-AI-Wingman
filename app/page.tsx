@@ -415,6 +415,8 @@ Você DEVE retornar APENAS um JSON array válido com as 4 opções, sem NENHUM t
 
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 relative overflow-x-hidden">
+      {/* Texture Background */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.03] mix-blend-screen" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/cubes.png')" }}></div>
       {/* Mesh Background Decor */}
       <div className="fixed top-[-10%] left-[-10%] w-[600px] h-[600px] bg-purple-900/20 rounded-full blur-[120px] pointer-events-none"></div>
       <div className="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-900/20 rounded-full blur-[120px] pointer-events-none"></div>
@@ -541,7 +543,9 @@ Você DEVE retornar APENAS um JSON array válido com as 4 opções, sem NENHUM t
             {/* Mentor Input Section */}
             <div className="lg:col-span-2 relative">
                 <div className="sticky top-24">
-                  <div className="backdrop-blur-2xl bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-white/5 border border-white/10 p-6 rounded-[2.5rem] shadow-2xl relative">
+                  <div 
+                    className="backdrop-blur-2xl bg-white/5 border border-white/10 p-6 rounded-[2.5rem] shadow-2xl relative"
+                  >
                     <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 blur-2xl rounded-full"></div>
                     <div className="flex items-center gap-3 mb-2 relative z-10">
                       <div className="bg-purple-600/20 border border-purple-500/30 rounded-xl p-2 shadow-lg">
