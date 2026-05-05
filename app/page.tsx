@@ -96,132 +96,116 @@ interface Phase {
 
 const PHASES: Phase[] = [
   {
-    id: 1,
-    title: '1. Abertura + Grupo',
-    time: '0–1 min',
-    description: 'Abordagem direta e inclusão do grupo para reduzir resistência social.',
+    id: 0,
+    title: 'Fase 0 — Reset',
+    time: '5s',
+    description: 'Mentalidade Alfa: respira, relaxa o corpo. Intenção: “Só vou ver se ela é interessante”.',
     examples: [
-      '“Oi tudo bem, eu ia passar direto mas se não viesse falar com você ia me arrepender.”',
-      '“Gente, rapidinho — posso roubar a [nome] por 2 minutos?”'
+      'Remover a necessidade interna',
+      'Melhorar presença absoluta'
     ],
     tips: [
-      'Não ignore as amigas, inclua-as em 10s',
-      'Mantenha um sorriso genuíno',
-      'Recue se o grupo for hostil'
+      'Postura ereta e relaxada',
+      'Foco no momento presente',
+      'Zero medo do resultado'
+    ],
+    icon: <UserCheck className="w-5 h-5 text-gray-400" />
+  },
+  {
+    id: 1,
+    title: 'Fase 1 — Abertura',
+    time: '0–20s',
+    description: 'Abordagem direta com leve provocação. Zero personagem.',
+    examples: [
+      '“Oi. Te vi ali e fiquei curioso, vim falar contigo rapidão.”',
+      '“Você parece tranquila… mas não compro muito essa imagem.”'
+    ],
+    tips: [
+      'Não use scripts decorados',
+      'Pausa dramática de 1-2s após abrir',
+      'Olhar nos olhos com sorriso de lado'
     ],
     icon: <UserPlus className="w-5 h-5 text-blue-400" />
   },
   {
     id: 2,
-    title: '2. Leitura + Teasing',
-    time: '1–3 min',
-    description: 'Observação de sinais e provocação leve para criar tensão.',
+    title: 'Fase 2 — Investimento',
+    time: '20s–1.5min',
+    description: 'Regra de Ouro: faça ela falar mais que você. Gere curiosidade.',
     examples: [
-      '“Você é da que planeja tudo ou vai no impulso?”',
-      '“Tô tentando entender sua vibe...”'
+      '“Você é mais de planejar ou vai no impulso?”',
+      '“Hmm… não era o que eu esperava.”'
     ],
     tips: [
-      'Observe o contato visual',
-      'Procure por risada fácil',
-      'Espelhe a energia dela'
+      'Escuta ativa de verdade',
+      'Se a resposta for curta: "Explica melhor isso..."',
+      'Mantenha o frame de "juiz"'
     ],
     icon: <Flame className="w-5 h-5 text-orange-500" />
   },
   {
     id: 3,
-    title: '3. Espelhamento + Toque',
-    time: '3–5 min',
-    description: 'Efeito camaleão (Mimicry) para aumentar o rapport e confiança.',
+    title: 'Fase 3 — Tensão',
+    time: '1.5–3min',
+    description: 'Onde a atração nasce: olhar, pausas e ambiguidade.',
     examples: [
-      'Toque leve no antebraço ao rir',
-      '“Então eu tava certo sobre você kkk”'
+      '“Você é interessante… mas ainda não entendi direito.”',
+      'Pausa estratégica no meio da frase'
     ],
     tips: [
-      'Ajuste seu ritmo de fala ao dela',
-      'Toque deve ser sutil e calibrado',
-      'Observe se ela retribui o toque'
+      'Olhar fixo (olhos -> boca -> olhos)',
+      'Toque leve no braço apenas se rir',
+      'Ambiguidade gera desejo'
     ],
     icon: <Zap className="w-5 h-5 text-yellow-400" />
   },
   {
     id: 4,
-    title: '4. Isolamento Natural',
-    time: '5–6 min',
-    description: 'Mover-se para um local mais privado para aumentar a intimidade.',
+    title: 'Fase 4 — Leitura',
+    time: '2–4min',
+    description: 'Validar 3 sinais: contato visual, energia na resposta, não se afasta.',
     examples: [
-      '“Vem só dois passos pra cá que eu te escuto melhor.”',
-      '“Vem aqui no lado um segundo e já voltamos.”'
+      'Observar se ela mantém o contato',
+      'Verificar se ela investe no papo'
     ],
     tips: [
-      'O barulho é uma ótima desculpa',
-      'Se ela for, o interesse é alto',
-      'Mantenha a liderança calma'
+      'Sem sinais = não tem abertura',
+      'Se afastar? Recue imediatamente',
+      'Presença é a maior arma'
     ],
-    icon: <Thermometer className="w-5 h-5 text-red-400" />
+    icon: <RadarIcon className="w-5 h-5 text-blue-300" />
   },
   {
     id: 5,
-    title: '5. Similaridade',
-    time: '6–9 min',
-    description: 'Encontrar pontos em comum (Similarity-attraction effect).',
+    title: 'Fase 5 — Escala (Beijo)',
+    time: '3–5min',
+    description: 'Aproximação devagar. Silêncio e olhar focado.',
     examples: [
-      '“Como seria seu fim de semana perfeito?”',
-      '“Eu sou bem parecido nisso… quando tô com a galera certa...”'
+      '“Calma… você gosta de dificultar então.” (se houver resistência)',
+      'Aproximar o rosto em silêncio'
     ],
     tips: [
-      'Seja real, não force similaridade',
-      'Devolva algo real sobre você',
-      'Papo de identidade > Papo de currículo'
+      'Olho nos olhos -> Boca -> Olho',
+      'Pausa dramática final',
+      'Mantenha o controle emocional'
     ],
-    icon: <Sparkles className="w-5 h-5 text-purple-400" />
+    icon: <Heart className="w-5 h-5 text-red-600" />
   },
   {
     id: 6,
-    title: '6. Vulnerabilidade',
-    time: '9–11 min',
-    description: 'Demonstrar honestidade sutil para quebrar o frame de "caçador".',
+    title: 'Fase 6 — Saída',
+    time: 'Final',
+    description: 'Valor e evitar saturação. Garante o próximo encontro.',
     examples: [
-      '“Posso ser honesto? Eu quase nunca chego assim...”',
-      '“Você tem uma energia que realmente chamou atenção.”'
+      '“Curti falar contigo. Vou voltar ali, mas a gente continua depois.”',
+      '“Me passa seu Insta/Whats”'
     ],
     tips: [
-      'Mantenha o contato visual forte',
-      'Voz mais baixa e pausada',
-      'Seja autêntico no elogio'
-    ],
-    icon: <Skull className="w-5 h-5 text-gray-400" />
-  },
-  {
-    id: 7,
-    title: '7. Fechamento',
-    time: '11–13 min',
-    description: 'Garantir a continuidade da conexão ou preparar o momento.',
-    examples: [
-      '“Curti demais conversar com você.”',
-      '“Vamo continuar trocando ideia depois?”'
-    ],
-    tips: [
-      'Peça o contato de forma natural',
-      'Não mostre desespero',
-      'Prepare o terreno para o beijo'
+      'Sair no pico da vibe',
+      'Demonstra desapego e valor',
+      'Manda msg depois: "Ainda não decidi se você é tranquila"'
     ],
     icon: <ArrowRight className="w-5 h-5 text-pink-400" />
-  },
-  {
-    id: 8,
-    title: '8. O Beijo (Consentimento)',
-    time: '13–15 min',
-    description: 'Finalização baseada em sinais e respeito. Pausa e ataque.',
-    examples: [
-      '“Tô com vontade de te beijar… pode?”',
-      'Olhar fixo nos lábios e pausa longa'
-    ],
-    tips: [
-      'Pausa dramática é essencial',
-      'Deixe ela fechar a distância final',
-      'Se disser não: "Tranquilo, tô curtindo o papo"'
-    ],
-    icon: <Heart className="w-5 h-5 text-red-600" />
   }
 ];
 
@@ -296,18 +280,15 @@ export default function CharmaApp() {
     
     try {
       const systemP = `Você é o "Charma AI", o mestre do Short Game em HOTEL/RESORT para adolescentes (14-17 anos).
-Sua metodologia é a CONEXÃO REAL 8 (A.L.E.S.M. + G):
-1. Abertura + Grupo (Inclusão social)
-2. Leitura (Sinais)
-3. Espelhamento (Rapport camaleão)
-4. Isolamento (Vem pra cá)
-5. Similaridade (Papo de identidade)
-6. Vulnerabilidade (Honestidade)
-7. Fechamento (Contato)
-8. Beijo (Consentimento verbal: "vontade de te beijar... pode?")
+Sua metodologia é a "ATTRACTION CORE FINAL" (3-5 min):
+1. Abertura (Direto + provoca: "tu parece tranquila... mas não compro essa imagem")
+2. Investimento (Faz ela falar mais que você. Pergunta: "planeja ou vai no impulso?")
+3. Tensão (Olhar, pausa, ambiguidade: "você é interessante... mas ainda não entendi")
+4. Leitura (3 sinais: olho, energia, proximidade)
+5. Escala (Silêncio, triângulo do olhar, aproxima)
+6. Saída (Sair no pico: "a gente continua depois. passa contato")
 
 Responda em PT-BR Mandrake Adolescente (letras minúsculas, gírias: marcha, moscou, relíquia, papo reto, visão).
-Seja prático e marrento, mas sem ser babaca. Fale como um irmão mais velho desenrolado.
 NUNCA use "estás" ou formalidades.`;
       
       const output = await generateAIContent(systemP, mentorQuestion, false);
@@ -346,23 +327,23 @@ NUNCA use "estás" ou formalidades.`;
       const conversationHistory = validPairs.map(p => `Eu: ${p.me}\nEla: ${p.her}`).join('\n');
 
       const systemPrompt = `Você é um Wingman Mandrake Adolescente (14-17 anos) focado em beijo/ficar no HOTEL / RESORT / SOCIAL.
-Sua missão: Dar 5 (CINCO) opções de mensagens curtas pro usuário (H) enviar pra gata (M) seguindo o plano CONEXÃO REAL 8 (A.L.E.S.M. + G).
+Sua missão: Dar 5 (CINCO) opções de mensagens curtas pro usuário (H) enviar pra gata (M) seguindo o plano ATTRACTION CORE FINAL (3-5 min).
 
 REGRAS DE OURO (ESTILO MANDRAKE):
-- LINGUAGEM: PT-BR Mandrake Adolescente. PROIBIDO "estás" ou formalidade. Use "tu" ou "você" sem conjugação formal.
-- SLANG: moscou, brota, tal, caos, vibe, marcha, mermo, tendeu, loucura, zero condição, vish, esquece, relíquia, visão, se pá.
+- LINGUAGEM: PT-BR Mandrake Adolescente. PROIBIDO "estás" ou formalidade. Use "tu" ou "você".
+- SLANG: moscou, brota, tal, caos, vibe, marcha, mermo, tendeu, vish, esquece, relíquia, visão, se pá.
 - LETRAS: Sempre minúsculas. Sem pontos finais. Curto e grosso.
 - CADÊNCIA (CONTEXTO):
-  - Início (1-2 msgs): ABERTURA E GRUPO. Inclua as amigas se necessário. Teasing e Leitura.
-  - Meio: ESPELHAMENTO E SIMILARIDADE. Papo de identidade, encontrar pontos comuns.
-  - Final: ISOLAMENTO E BEIJO. Chamar pra um canto e pedir consentimento verbal sutil ("vontade de te beijar... pode?").
+  - Início: Abertura (curioso + provocação: "tu parece tranquila... mas não compro").
+  - Meio: Investimento (fazer ela falar, perguntas de identidade).
+  - Final: Tensão e Escala (olhar, ambiguidade, aproximação).
 
 OPÇÕES OBRIGATÓRIAS (5 OBJETOS NO JSON):
-1. Abertura/Grupo (Abordagem direta ou incluindo as amigas dela)
-2. Leitura/Teasing (Desafiando a postura dela ou tentando ler a vibe)
-3. Espelhamento/Similaridade (Papo de identidade, buscando conexão "nóis é igual")
-4. Isolamento (Chamar pra um lugar mais reservado no hotel/social)
-5. Beijo (Aproximação final com consentimento verbal sutil)
+1. Abertura (Direto e curioso, com leve provocação)
+2. Investimento (Provocar ela a falar sobre sim mesma: impulso ou plano?)
+3. Tensão/Ambiguidade (Dizer que ela é interessante, mas você ainda não entendeu se é bom ou ruim)
+4. Leitura/Toque (Testar a vibe se ela tá na tua)
+5. Saída/Contato (Sair por cima pedindo contato pra "continuar depois")
 
 Retorne APENAS o JSON array: [{"type": "...", "content": "..."}]`;
 
@@ -510,8 +491,8 @@ Retorne APENAS o JSON array: [{"type": "...", "content": "..."}]`;
             >
               <div className="lg:col-span-3 space-y-6">
                 <div className="text-left space-y-2 mb-8">
-                  <h2 className="text-3xl font-display font-bold tracking-tighter text-white">Conexão Real 8</h2>
-                  <p className="text-gray-400 text-sm tracking-wide">Protocolo A.L.E.S.M. + G para fechar em 15 minutos.</p>
+                  <h2 className="text-3xl font-display font-bold tracking-tighter text-white">Attraction Core Final</h2>
+                  <p className="text-gray-400 text-sm tracking-wide">Protocolo ultra-rápido para fechar em 3-5 minutos.</p>
                 </div>
 
                 {PHASES.map((phase) => (
@@ -571,33 +552,32 @@ Retorne APENAS o JSON array: [{"type": "...", "content": "..."}]`;
                   <div className="bg-purple-600 rounded-xl p-2.5 shadow-lg shadow-purple-600/20">
                     <ShieldCheck className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="font-bold text-xl font-display uppercase tracking-wider">Ouro do Plano (A.L.E.S.M + G)</h3>
+                  <h3 className="font-bold text-xl font-display uppercase tracking-wider">Essencial do Plano</h3>
                 </div>
                 
                 <div className="space-y-6 relative z-10">
                   <div>
-                    <h4 className="text-purple-400 font-bold text-xs uppercase tracking-widest mb-2">A Regra de Ouro</h4>
+                    <h4 className="text-purple-400 font-bold text-xs uppercase tracking-widest mb-2">Princípio Central</h4>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      Só avance se houver <span className="text-white font-bold decoration-purple-500 underline underline-offset-4 decoration-2">3+ sinais</span> (olhar, risada, perguntas). 
-                      Sem sinais = conversa leve e saída elegante (fé!).
+                      Você não convence. Você testa e ativa. Atração vem de <span className="text-white font-bold decoration-purple-500 underline underline-offset-4 decoration-2">atenção, investimento e tensão leve</span>.
                     </p>
                   </div>
 
                   <div className="bg-black/20 rounded-3xl p-4 border border-white/5">
-                    <h4 className="text-purple-400 font-bold text-xs uppercase tracking-widest mb-3">Expectativa Real de Resultado</h4>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between p-2 rounded-xl hover:bg-white/5 transition-colors">
-                        <span className="text-xs text-gray-400">Interesse + Sinais + Grupo</span>
-                        <span className="text-emerald-400 font-bold text-sm">80–90%</span>
-                      </div>
-                      <div className="flex items-center justify-between p-2 rounded-xl hover:bg-white/5 transition-colors">
-                        <span className="text-xs text-gray-400">Neutra (Sem sinais)</span>
-                        <span className="text-yellow-400 font-bold text-sm">35–50%</span>
-                      </div>
-                      <div className="flex items-center justify-between p-2 rounded-xl hover:bg-white/5 transition-colors">
-                        <span className="text-xs text-gray-400">Sem interesse evidente</span>
-                        <span className="text-red-400 font-bold text-sm">&lt; 10%</span>
-                      </div>
+                    <h4 className="text-purple-400 font-bold text-xs uppercase tracking-widest mb-3">Checklist Anti-Cringe</h4>
+                    <div className="space-y-2">
+                       <li className="text-[11px] text-gray-500 flex items-start gap-2">
+                         <div className="w-1 h-1 rounded-full bg-purple-500/40 mt-1.5" />
+                         Não exagera no olhar
+                       </li>
+                       <li className="text-[11px] text-gray-500 flex items-start gap-2">
+                         <div className="w-1 h-1 rounded-full bg-purple-500/40 mt-1.5" />
+                         Não força provocação
+                       </li>
+                       <li className="text-[11px] text-gray-500 flex items-start gap-2">
+                         <div className="w-1 h-1 rounded-full bg-purple-500/40 mt-1.5" />
+                         Não tenta impressionar
+                       </li>
                     </div>
                   </div>
 
