@@ -530,7 +530,7 @@ Retorne APENAS o JSON array: [{"type": "...", "content": "..."}]`;
                     <ul className="text-xs text-gray-400 space-y-2">
                       <li className="flex items-center gap-2">• Necessidade ou intensidade excessiva cedo</li>
                       <li className="flex items-center gap-2">• Ignorar falta de reciprocidade (forçar)</li>
-                      <li className="flex items-center gap-2">• Modo entrevista ("mora onde?")</li>
+                      <li className="flex items-center gap-2">• Modo entrevista (&quot;mora onde?&quot;)</li>
                       <li className="flex items-center gap-2">• Performance rígida / script óbvio</li>
                     </ul>
                   </div>
