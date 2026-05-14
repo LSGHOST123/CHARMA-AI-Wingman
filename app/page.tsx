@@ -99,129 +99,121 @@ const PHASES: Phase[] = [
   {
     id: 0,
     title: 'Fase 0 — Estado Interno',
-    time: '5–10s',
-    description: 'Relaxa ombros, respiração lenta, fala um pouco mais devagar, sorriso leve + expressão aberta.',
+    time: '0–10s',
+    description: 'Postura relaxada, ombros soltos, respiração calma, ocupa espaço naturalmente, sorriso leve e contato visual caloroso.',
     actionLabel: 'Mentalidade Alfa',
     examples: [
-      'Mentalidade: “Vou curtir o papo e ver se rola vibe mútua.”',
-      'Sem carência = atração máxima'
+      'Mentalidade: “Estou aqui curtindo a conversa e vendo como flui.”'
     ],
     tips: [
-      'Abaixe o tom de voz levemente',
-      'Linguagem corporal aberta',
-      'Não tenha pressa de abrir'
+      'Fique 100% presente na conversa',
+      'Linguagem corporal aberta e estável',
+      'Abaixe o tom de voz levemente'
     ],
     icon: <UserCheck className="w-5 h-5 text-gray-400" />
   },
   {
     id: 1,
-    title: 'Fase 1 — Abertura',
-    time: '0–20s',
-    description: 'Objetivo: parecer SOCIALMENTE NATURAL. Pausa curta + contato visual após abrir.',
+    title: 'Fase 1 — Abertura + Atenção',
+    time: '10–40s',
+    description: 'Fale devagar e natural. O objetivo é parecer socialmente natural e gerar curiosidade.',
     actionLabel: 'O que falar',
     examples: [
-      '“Te vi aqui e sua energia me chamou atenção. Posso falar contigo um minuto?”',
-      '“Te vi aqui e achei tua vibe diferente.”',
-      '“Você parece estar curtindo de um jeito diferente do resto. Curioso.”',
-      '“Oi. Tava te vendo dali e fiquei curioso. Posso falar contigo rapidão?”',
-      '“Você parece estar julgando silenciosamente todo mundo daqui.”',
-      '“Preciso testar uma teoria contigo rapidão.”',
-      '“Sempre achei tua vibe interessante, mas nunca paramos pra falar direito.”'
+      '“Sua vibe me chamou atenção agora.”',
+      '“Você tá com uma energia diferente, me deu curiosidade.”',
+      '“A gente nunca conversa direito, né? Sempre achei tua energia legal.”'
     ],
     tips: [
-      'Pausa curta + contato visual (2-3s)',
-      'Sorriso leve e descontraído',
+      'Pausa de 2-3 segundos após abrir',
+      'Mantenha o contato visual + sorriso leve',
       'Observe a reação inicial'
     ],
     icon: <UserPlus className="w-5 h-5 text-blue-400" />
   },
   {
     id: 2,
-    title: 'Fase 2 — Ativação + Reciprocidade',
-    time: '20s–1.5min',
-    description: 'Crie curiosidade, envolvimento e troca emocional. Mirror sutil de energia.',
-    actionLabel: 'O que falar',
+    title: 'Fase 2 — Conexão e Semelhança',
+    time: '40s–2min',
+    description: 'Crie um vínculo genuíno através de auto-revelação recíproca e validação. Escuta ativa é a chave.',
+    actionLabel: 'Conexão Emocional',
     examples: [
-      '“Você parece tranquila por fora… mas aposto que tem uma intensidade forte quando se abre.”',
-      '“Você parece tranquila… mas acho que você dá trabalho quando ganha intimidade.”',
-      '“Qual é a coisa mais espontânea que você já fez?”',
-      '“O que te faz perder a noção do tempo?”'
+      '“O que te faz perder a noção do tempo?”',
+      '“O que te faz sentir mais você mesma?”',
+      '“Faz sentido… você curte liberdade / intensidade.”'
     ],
     tips: [
-      'Ouça bem, interprete e reciprocate',
-      'Mirror sutil de energia e postura',
-      'Papo emocional > Papo lógico'
+      'Não interrompa, valide as emoções dela',
+      'Mostre semelhança curta: “Eu também sou bem assim com…”',
+      'Repita algo que ela falou para mostrar que ouviu'
     ],
     icon: <Flame className="w-5 h-5 text-orange-500" />
   },
   {
     id: 3,
-    title: 'Fase 3 — Tensão + Arousal',
-    time: '1.5–3min',
-    description: 'Aqui nasce a atração. Calibre o olhar, use pausas e validação intermitente.',
-    actionLabel: 'Entrega e Tensão',
+    title: 'Fase 3 — Tensão e Desejo',
+    time: '2–3.5min',
+    description: 'Misatribuição de excitação. Aumente a tensão com contato visual sustentado e silêncios.',
+    actionLabel: 'Geração de Tensão',
     examples: [
-      '“Você é mais interessante do que parecia à primeira vista.”',
-      '“Você claramente bagunçaria minha rotina de um jeito bom kk.”'
+      '“Você é mais interessante do que parece de primeira.”',
+      '“Você tem uma energia que chama atenção.”'
     ],
     tips: [
-      'Eye contact: 3-5s sustentados',
-      'Pausas: Fala -> silêncio -> continua',
-      'Toque leve no braço se houver reciprocidade'
+      'Olhar sustentado (4-6s) → desvia devagar → volta',
+      'Silêncio curto + olhar após falar',
+      'Toque leve no antebraço se houver reciprocidade'
     ],
     icon: <Zap className="w-5 h-5 text-yellow-400" />
   },
   {
     id: 4,
-    title: 'Fase 4 — Micro-Conexão',
-    time: '2–4min',
-    description: 'Gere o sentimento de que você a entende genuinamente. Compartilhe algo leve seu.',
-    actionLabel: 'O que falar',
+    title: 'Fase 4 — Vínculo e Segurança',
+    time: '3–4.5min',
+    description: 'Reforce que a conexão é única e segura. Associe você a sensações boas.',
+    actionLabel: 'Vínculo Real',
     examples: [
-      '“Pela forma como você fala, parece que valoriza liberdade mais que segurança, né?”',
-      '“Você parece gostar mais de liberdade do que rotina.”'
+      '“Sabe o que é raro? Conversar com alguém e o tempo passar tão rápido assim. Tá fluindo legal com você.”'
     ],
     tips: [
-      'Foque em identidade',
-      'Self-disclosure gradual',
-      'Busque investimento dela'
+      'Compartilhe algo pequeno e leve sobre você',
+      'Mantenha o equilíbrio na conversa',
+      'Garanta que ela se sinta segura'
     ],
     icon: <Sparkles className="w-5 h-5 text-purple-400" />
   },
   {
     id: 5,
-    title: 'Fase 5 — Escala Rápida',
-    time: '3–5min',
-    description: 'Reduza a distância, fale mais baixo e aumente os silêncios. Lean-in lento.',
-    actionLabel: 'O Beijo',
+    title: 'Fase 5 — Pegar Contato',
+    time: '4–5min',
+    description: 'Quando houver investimento claro (ela ri, faz perguntas), peça o contato de forma casual.',
+    actionLabel: 'O Fechamento',
     examples: [
-      'Observar se ela mantém a proximidade',
-      'Olhar focado (triângulo do olhar)'
+      '“Gostei demais dessa conversa. Tá rolando uma vibe boa aqui.”',
+      '“Vamos continuar isso depois com calma? Me passa seu Instagram ou WhatsApp.”'
     ],
     tips: [
-      'Escalar não é atacar, é convidar',
-      'Leia a reação dela no lean-in',
-      'Mantenha o controle emocional'
+      'Diga com tom casual e confiante',
+      'Se ela hesitar, sorria e diga: “Sem pressão”',
+      'Entregue o celular aberto na tela de adicionar'
     ],
-    icon: <Heart className="w-5 h-5 text-red-600" />
+    icon: <Send className="w-5 h-5 text-emerald-400" />
   },
   {
     id: 6,
-    title: 'Fase 6 — Fechamento',
-    time: 'Final',
-    description: 'Garanta a continuidade. Saída natural e callback emocional posterior.',
-    actionLabel: 'O que falar',
+    title: 'Fase 6 — Escala Física',
+    time: 'Momentum',
+    description: 'Leitura de sinais verdes claros: aproximação, toque de volta, riso fácil, olha para boca.',
+    actionLabel: 'Escala Final',
     examples: [
-      '“Gostei demais dessa conversa. Vamo continuar isso depois? Me passa teu Insta/Whats.”',
-      '“Ainda acho que você esconde aquela intensidade toda atrás desse sorriso tranquilo.”',
-      '“Ainda acho que você esconde problema atrás dessa cara tranquila.”'
+      'Diminuir a distância devagar + falar baixo',
+      'Olhar olhos → boca → olhos + silêncio 2-3s'
     ],
     tips: [
-      'Saia enquanto está divertido',
-      'Evite overtalking',
-      'O callback deve reativar a emoção'
+      'Incline suavemente para o beijo natural',
+      'Se não for o momento, finalize leve: “Depois nos falamos então”',
+      'A fluidez é mais importante que o objetivo final'
     ],
-    icon: <ArrowRight className="w-5 h-5 text-pink-400" />
+    icon: <Heart className="w-5 h-5 text-red-600" />
   }
 ];
 
@@ -296,14 +288,14 @@ export default function CharmaApp() {
     
     try {
       const systemP = `Você é o "Charma AI", o mestre do Short Game em HOTEL/RESORT para adolescentes (14-17 anos).
-Sua metodologia é a "ATTRACTION FLOW" (Versão Definitiva):
-1. Estado (Relaxa ombros, fala devagar, zero carência)
-2. Abertura (Natural, curiosidade: "te vi aqui e achei tua vibe diferente", pausa + olhar)
-3. Ativação + Reciprocidade (Observação + Hipótese: "tu parece tranquila... mas aposta que tem intensidade")
-4. Tensão + Arousal (Eye contact 3-5s, pausas estratégicas, humor leve)
-5. Micro-Conexão (Identidade: "valoriza liberdade mais que segurança?")
-6. Escala Rápida (Reduzir distância, silêncio, lean-in lento pro beijo)
-7. Fechamento (Sair no pico: "vamo continuar depois? passa contato")
+Sua metodologia é o "PROTOCOLO DEFINITIVO DE GERAÇÃO DE ATRAÇÃO — Versão Ultra Natural Melhorada":
+1. Estado Interno (Relaxa ombros, respira calma, sorriso leve, contato visual caloroso)
+2. Abertura + Atenção (Natural: "sua vibe me chamou atenção agora", pausa + olhar)
+3. Conexão e Semelhança (Escuta Ativa + Validação: "o que te faz perder a noção do tempo?")
+4. Tensão e Desejo (Eye contact sustentado 4-6s, silêncios estratégicos, misatribuição de excitação)
+5. Vínculo e Segurança (Pequena auto-revelação: "sabe o que é raro? o tempo passar tão rápido assim")
+6. Pegar Contato (Casual: "vamos continuar isso depois? me passa teu insta ou whats")
+7. Escala Física (Reduzir distância, olhar olhos-boca-olhos, lean-in suave se houver reciprocidade)
 
 Responda em PT-BR Mandrake Adolescente (letras minúsculas, gírias: marcha, moscou, relíquia, papo reto, visão).
 NUNCA use "estás" ou formalidades.`;
@@ -344,23 +336,23 @@ NUNCA use "estás" ou formalidades.`;
       const conversationHistory = validPairs.map(p => `Eu: ${p.me}\nEla: ${p.her}`).join('\n');
 
       const systemPrompt = `Você é um Wingman Mandrake Adolescente (14-17 anos) focado em beijo/ficar no HOTEL / RESORT / SOCIAL.
-Sua missão: Dar 5 (CINCO) opções de mensagens curtas pro usuário (H) enviar pra gata (M) seguindo o plano ATTRACTION FLOW (Versão Definitiva).
+Sua missão: Dar 5 (CINCO) opções de mensagens curtas pro usuário (H) enviar pra gata (M) seguindo o plano "PROTOCOLO DEFINITIVO DE GERAÇÃO DE ATRAÇÃO — Versão Ultra Natural Melhorada".
 
 REGRAS DE OURO (ESTILO MANDRAKE):
 - LINGUAGEM: PT-BR Mandrake Adolescente. PROIBIDO "estás" ou formalidade. Use "tu" ou "você".
 - SLANG: moscou, brota, tal, caos, vibe, marcha, mermo, tendeu, vish, esquece, relíquia, visão, se pá.
 - LETRAS: Sempre minúsculas. Sem pontos finais. Curto e grosso.
 - CADÊNCIA (CONTEXTO):
-  - Início: Abertura (natural + curiosidade/provocação).
-  - Meio: Ativação e Tensão (interpretações sobre ela, eye contact verbal).
-  - Final: Micro-conexão e Fechamento (validar, entender identidade, trocar contato).
+  - Início: Abertura e Atenção (vibe, energia, curiosidade).
+  - Meio: Conexão, Semelhança e Tensão (perguntas sobre tempo, validações emocionais, teasing).
+  - Final: Vínculo, Pegar Contato e Escala (vibe boa, propor continuar depois).
 
 OPÇÕES OBRIGATÓRIAS (5 OBJETOS NO JSON):
-1. Abertura Natural (Socialmente calibrada, curiosa ou "julgando" a vibe dela)
-2. Ativação (Hipótese emocional sobre intensidade oculta)
-3. Tensão/Humor (Provocação sobre ser um "problema" ou "bagunçar rotina")
-4. Micro-Conexão (Frase de identidade sobre liberdade/espontaneidade)
-5. Fechamento/Callback (Proposta de continuar depois + callback emocional)
+1. Abertura Natural (Energia, vibe, curiosidade natural)
+2. Pergunta de Conexão (Tempo, essência, liberdade)
+3. Tensão/Desejo (Teasing sobre ser interessante ou ter energia que chama atenção)
+4. Vínculo/Segurança (Frase sobre o tempo passar rápido ou fluir legal)
+5. Fechamento/Callback (Proposta de continuar depois + celular aberto para contato)
 
 Retorne APENAS o JSON array: [{"type": "...", "content": "..."}]`;
 
@@ -508,8 +500,8 @@ Retorne APENAS o JSON array: [{"type": "...", "content": "..."}]`;
             >
               <div className="lg:col-span-3 space-y-6">
                 <div className="text-left space-y-2 mb-8">
-                  <h2 className="text-3xl font-display font-bold tracking-tighter text-white">Attraction Flow</h2>
-                  <p className="text-gray-400 text-sm tracking-wide">Protocolo definitivo de presença, curiosidade e tensão emocional.</p>
+                  <h2 className="text-3xl font-display font-bold tracking-tighter text-white">Geração de Atração</h2>
+                  <p className="text-gray-400 text-sm tracking-wide">Protocolo definitivo: Presence, Deep Connection & Tension.</p>
                 </div>
 
                 {/* Princípios Centrais */}
@@ -520,18 +512,18 @@ Retorne APENAS o JSON array: [{"type": "...", "content": "..."}]`;
                     </h3>
                     <p className="text-sm text-gray-300 leading-relaxed">
                       Atração surge de: Presença + Curiosidade + Troca emocional leve + Tensão + Leitura constante. 
-                      Você não convence — cria uma experiência onde ela se sente percebida.
+                      O objetivo é criar uma experiência onde ela se sente percebida e conectada.
                     </p>
                   </div>
                   <div className="bg-red-500/5 border border-red-500/20 p-5 rounded-3xl backdrop-blur-sm">
                     <h3 className="text-red-400 font-bold text-xs uppercase tracking-widest mb-3 flex items-center gap-2">
-                      <Zap className="w-4 h-4" /> O Que Mata (Red Flags)
+                      <ShieldCheck className="w-4 h-4" /> Regras de Ouro
                     </h3>
                     <ul className="text-xs text-gray-400 space-y-2">
-                      <li className="flex items-center gap-2">• Necessidade ou intensidade excessiva cedo</li>
-                      <li className="flex items-center gap-2">• Ignorar falta de reciprocidade (forçar)</li>
-                      <li className="flex items-center gap-2">• Modo entrevista (&quot;mora onde?&quot;)</li>
-                      <li className="flex items-center gap-2">• Performance rígida / script óbvio</li>
+                      <li className="flex items-center gap-2 text-emerald-400/80">• Fique 100% presente na conversa, não no &quot;script&quot;</li>
+                      <li className="flex items-center gap-2 text-emerald-400/80">• Avance só quando houver reciprocidade clara</li>
+                      <li className="flex items-center gap-2 text-red-400/80">• Evite o &quot;Modo Entrevista&quot; (&quot;onde mora?&quot;)</li>
+                      <li className="flex items-center gap-2 text-red-400/80">• Se não houver reciprocidade, saia natural e leve</li>
                     </ul>
                   </div>
                 </div>
